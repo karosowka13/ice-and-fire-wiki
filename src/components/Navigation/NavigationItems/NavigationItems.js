@@ -6,18 +6,10 @@ import NavigationItem from "./NavigationItem/NavigationItem";
 const navigationItems = (props) => (
 	<ul className={classes.NavigationItems}>
 		<NavigationItem link="/" exact>
-			Marvelopedia
+			Characters
 		</NavigationItem>
 
-		<NavigationItem link="/favorite" disabled={!props.isAuthenticated}>
-			Favourites
-		</NavigationItem>
-
-		{!props.isAuthenticated ? (
-			<NavigationItem link="/auth">Sign in</NavigationItem>
-		) : (
-			<NavigationItem link="/logout">Logout</NavigationItem>
-		)}
+		<NavigationItem link="/books">Books</NavigationItem>
 	</ul>
 );
 
