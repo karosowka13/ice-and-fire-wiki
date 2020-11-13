@@ -1,0 +1,23 @@
+.Body {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	overflow-x: auto;
+	padding: 0 5px;
+}
+.BodyRow {
+	display: flex;
+	flex: 0 0 auto;
+	border-bottom: 1px solid #eee;
+}
+.BodyRowItem {
+	display: flex;
+	height: 46px;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 0 10px;
+	font-size: 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

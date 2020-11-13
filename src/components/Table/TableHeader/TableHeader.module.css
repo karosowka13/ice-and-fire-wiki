@@ -1,0 +1,25 @@
+.Head {
+	display: flex;
+	flex: 0 0 auto;
+	height: 46px;
+	color: white;
+	border-bottom: 1px solid #ccc;
+	background-color: #fec200;
+	padding: 0 5px;
+	font-size: 12px;
+}
+
+.HeadRow {
+	display: flex;
+	flex: 1 1 auto;
+	text-transform: uppercase;
+	align-items: center;
+	justify-content: space-between;
+}
+.HeadRowItem {
+	display: flex;
+	text-transform: uppercase;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+}

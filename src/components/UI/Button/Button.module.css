@@ -1,0 +1,51 @@
+.Button {
+	background-color: transparent;
+	border: none;
+	color: white;
+	outline: none;
+	cursor: pointer;
+	font: inherit;
+	padding: 6px;
+	font-weight: bold;
+	margin: 5px;
+	width: 95%;
+	border-radius: 0.5rem;
+}
+
+.Button:disabled {
+	color: white;
+	pointer-events: none;
+	background-color: #ccc;
+	border-color: #ccc;
+}
+
+.Success {
+	border: 2px solid #072845;
+	background-color: #072845;
+	color: white;
+}
+.Success:hover {
+	color: #072845;
+	border: 2px solid #072845;
+	background-color: white;
+}
+
+.GoTo {
+	color: #659fb4;
+	border: 2px solid #659fb4;
+}
+.GoTo:hover {
+	border: 2px solid #659fb4;
+	background-color: #659fb4;
+	color: white;
+}
+
+.Danger {
+	color: red;
+	border: 2px solid red;
+}
+.Danger:hover {
+	border: 2px solid red;
+	background-color: red;
+	color: white;
+}
