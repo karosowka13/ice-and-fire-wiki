@@ -7,7 +7,7 @@ import * as actions from "../../store/actions/index";
 
 import Spinner from "../../components/UI/Spinner/Spinner";
 import TableHeader from "../../components/Table/TableHeader/TableHeader";
-import TableBody from "../components/Table/TableBody/TableBody";
+import TableBody from "../../components/Table/TableBody/TableBody";
 //import Filter from "./Filter/Filter";
 import classes from "./Characters.module.css";
 
