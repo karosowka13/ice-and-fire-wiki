@@ -5,7 +5,7 @@
 	color: white;
 	border-bottom: 1px solid #ccc;
 	background-color: #fec200;
-	padding: 0 5px;
+	padding: 0 10px;
 	font-size: 12px;
 }
 
@@ -14,12 +14,12 @@
 	flex: 1 1 auto;
 	text-transform: uppercase;
 	align-items: center;
-	justify-content: space-between;
 }
 .HeadRowItem {
+	box-sizing: border-box;
 	display: flex;
+	width: 200px;
 	text-transform: uppercase;
 	align-items: center;
-	justify-content: space-between;
 	padding: 10px;
 }

@@ -39,12 +39,17 @@ const input = (props) => {
 					value={props.value}
 					onChange={props.changed}
 				>
-					<option value="">All comics</option>
-					{props.elementConfig.options.map((option) => (
-						<option key={option} value={option}>
-							{option}
-						</option>
-					))}
+					{props.elementConfig.options.map((option) => {
+						let value = option;
+						if (option === "" || option === "All genders") {
+							value = "";
+						}
+						return (
+							<option key={option} value={value}>
+								{option}
+							</option>
+						);
+					})}
 				</select>
 			);
 			break;

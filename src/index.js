@@ -9,6 +9,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
 import charactersReducer from "./store/reducers/characters";
+import booksReducer from "./store/reducers/books";
 const composeEnhancers =
 	(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
 		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -18,6 +19,7 @@ const composeEnhancers =
 	compose;
 const rootReducer = combineReducers({
 	characters: charactersReducer,
+	books: booksReducer,
 });
 
 const store = createStore(

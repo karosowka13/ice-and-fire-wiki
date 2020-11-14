@@ -8,7 +8,8 @@ const initialState = {
 	success: false,
 	inputed: "",
 	selected: "",
-	filteredCharacters: [],
+	pageSize: "",
+	links: { next: "", prev: "", first: "", last: "" },
 };
 
 const fetchCharactersStart = (state, action) => {
@@ -18,45 +19,36 @@ const fetchCharactersStart = (state, action) => {
 const fetchCharactersSuccess = (state, action) => {
 	return updateObject(state, {
 		characters: action.characters,
-		filteredCharacters: action.characters,
 		loading: false,
 		success: true,
 	});
 };
 
 const fetchCharactersFail = (state, action) => {
-	return updateObject(state, { loading: false });
+	return updateObject(state, { loading: false, error: action.error });
 };
 
 const selectCharacter = (state, action) => {
-	let filteredCharactersNew = null;
-	if (action.selectedValue === "") {
-		filteredCharactersNew = state.characters;
-	} else {
-		filteredCharactersNew = state.characters.filter((character) =>
-			character.comics
-				.map((element) => element.includes(action.selectedValue))
-				.includes(true)
-		);
-	}
 	return updateObject(state, {
-		filteredCharacters: filteredCharactersNew,
 		selected: action.selectedValue,
 	});
 };
 
 const searchCharacter = (state, action) => {
-	let searchedCharactersNew = null;
-	const regex = new RegExp(action.inputedValue, "i");
-	if (action.inputedValue === "") {
-		searchedCharactersNew = state.characters;
-	} else
-		searchedCharactersNew = state.characters.filter((character) =>
-			character.name.match(regex)
-		);
 	return updateObject(state, {
-		filteredCharacters: searchedCharactersNew,
 		inputed: action.inputedValue,
+	});
+};
+
+const changePageSize = (state, action) => {
+	return updateObject(state, {
+		pageSize: action.pageSize,
+	});
+};
+
+const setPagination = (state, action) => {
+	return updateObject(state, {
+		links: action.links,
 	});
 };
 
@@ -72,6 +64,10 @@ const reducer = (state = initialState, action) => {
 			return selectCharacter(state, action);
 		case actionTypes.SEARCH_CHARACTER:
 			return searchCharacter(state, action);
+		case actionTypes.PAGE_SIZE:
+			return changePageSize(state, action);
+		case actionTypes.SET_PAGINATION:
+			return setPagination(state, action);
 		default:
 			return state;
 	}

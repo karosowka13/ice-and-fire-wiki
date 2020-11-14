@@ -4,33 +4,75 @@ export const updateObject = (oldObject, updatedProperties) => {
 		...updatedProperties,
 	};
 };
-export const checkValidity = (value, rules) => {
-	let isValid = true;
-	if (!rules) {
-		return true;
+
+export function parseLinkHeader(header) {
+	if (header.length === 0) {
+		throw new Error("input must not be of zero length");
 	}
 
-	if (rules.required) {
-		isValid = value.trim() !== "" && isValid;
+	// Split parts by comma
+	const parts = header.split(",");
+	let links = {};
+	// Parse each part
+	for (let i = 0; i < parts.length; i++) {
+		let section = parts[i].split(";");
+		if (section.length !== 2) {
+			throw new Error("section could not be split on ';'");
+		}
+		const url = section[0].replace(/<(.*)>/, "$1").trim();
+		const name = section[1].replace(/rel="(.*)"/, "$1").trim();
+		links[name] = url;
+	}
+	return links;
+}
+
+export function getCharactersData(results) {
+	let fetchedCharacters = [];
+	for (let i in results) {
+		let books = [];
+		for (let n = 0; n < results[i].books.length; n++) {
+			books.push(results[i].books[n].match(/\d+/g).map(Number));
+		}
+		const isGender = results[i].gender ? results[i].gender : "Unknown";
+		const isCulture = results[i].culture ? results[i].culture : "Unknown";
+		let aliases = results[i].aliases;
+		if (results[i].name.length) {
+			aliases.push(results[i].name);
+		}
+		const namesAndAliases = aliases.join(", ");
+		fetchedCharacters.push({
+			nameAndAliases: namesAndAliases,
+			gender: isGender,
+			culture: isCulture,
+			books: books,
+			numberOfSeasons: results[i].tvSeries.length,
+		});
 	}
 
-	if (rules.minLength) {
-		isValid = value.length >= rules.minLength && isValid;
+	return fetchedCharacters;
+}
+
+function formatDate(date) {
+	const timeStr = date;
+	const dateForm = new Date(timeStr);
+	const day = dateForm.getDate();
+	const year = dateForm.getFullYear();
+	const month = dateForm.getMonth() + 1;
+	const dateStr = day + "." + month + "." + year;
+	return dateStr;
+}
+
+export function getBookData(results) {
+	let fetchedBooks = [];
+	for (let i in results) {
+		const released = formatDate(results[i].released);
+		fetchedBooks.push({
+			name: results[i].name,
+			ISBN: results[i].isbn,
+			nrPages: results[i].numberOfPages,
+			releaseDate: released,
+		});
 	}
 
-	if (rules.maxLength) {
-		isValid = value.length <= rules.maxLength && isValid;
-	}
-
-	if (rules.isEmail) {
-		const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-		isValid = pattern.test(value) && isValid;
-	}
-
-	if (rules.isNumeric) {
-		const pattern = /^\d+$/;
-		isValid = pattern.test(value) && isValid;
-	}
-
-	return isValid;
-};
+	return fetchedBooks;
+}
