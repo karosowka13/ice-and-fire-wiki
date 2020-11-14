@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import * as actions from "../../../store/actions/index";
-
+import { getPage } from "../../../shared/utility";
 import classes from "./Pagination.module.css";
 import Button from "../../../components/UI/Button/Button";
 class Pagination extends Component {
@@ -12,20 +12,10 @@ class Pagination extends Component {
 		let prev = null;
 		let next = null;
 		let last = null;
+		let actualPage = 1;
 		for (const linkName in this.props.linksObject) {
-			if (linkName === "first") {
-				first = (
-					<Button
-						key="first"
-						btnType="GoTo"
-						clicked={() =>
-							this.props.changePage(this.props.linksObject[linkName])
-						}
-					>
-						&lt;&lt;
-					</Button>
-				);
-			} else if (linkName === "prev") {
+			if (linkName === "prev") {
+				actualPage = getPage(this.props.linksObject[linkName]) + 1;
 				prev = (
 					<Button
 						key="prev"
@@ -38,6 +28,7 @@ class Pagination extends Component {
 					</Button>
 				);
 			} else if (linkName === "next") {
+				actualPage = getPage(this.props.linksObject[linkName]) - 1;
 				next = (
 					<Button
 						key="next"
@@ -61,11 +52,24 @@ class Pagination extends Component {
 						&gt;&gt;
 					</Button>
 				);
+			} else if (linkName === "first" && actualPage !== 1) {
+				first = (
+					<Button
+						key="first"
+						btnType="GoTo"
+						clicked={() =>
+							this.props.changePage(this.props.linksObject[linkName])
+						}
+					>
+						&lt;&lt;
+					</Button>
+				);
 			}
 		}
 		return (
 			<div className={classes.Pagination}>
-				{first} {prev} {next} {last}
+				{first} {prev} {actualPage}
+				{next} {last}
 			</div>
 		);
 	}

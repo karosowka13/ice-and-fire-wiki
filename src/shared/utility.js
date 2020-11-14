@@ -35,11 +35,17 @@ export function getCharactersData(results) {
 		}
 		const isGender = results[i].gender ? results[i].gender : "Unknown";
 		const isCulture = results[i].culture ? results[i].culture : "Unknown";
-		let aliases = results[i].aliases;
-		if (results[i].name.length) {
-			aliases.push(results[i].name);
+
+		let aliasesChar = [];
+
+		if (results[i].name[0]) {
+			aliasesChar.push(results[i].name);
 		}
-		const namesAndAliases = aliases.join(", ");
+		if (results[i].aliases[0]) {
+			aliasesChar.push(results[i].aliases);
+		}
+
+		const namesAndAliases = aliasesChar.join(", ");
 		fetchedCharacters.push({
 			nameAndAliases: namesAndAliases,
 			gender: isGender,
@@ -75,4 +81,10 @@ export function getBookData(results) {
 	}
 
 	return fetchedBooks;
+}
+
+export function getPage(str) {
+	return Number(
+		str.substring(str.lastIndexOf("page=") + 5, str.lastIndexOf("&"))
+	);
 }
