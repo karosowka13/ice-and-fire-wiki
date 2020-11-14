@@ -9,8 +9,12 @@ const tableBody = (props) => (
 				{Object.keys(element).map((key, index) => {
 					let cell = null;
 					if (key === "books") {
-						cell = element[key].map((nrBook) => (
-							<Link to={`/book/${element[key]}`} className={classes.BookNr}>
+						cell = element[key].map((nrBook, index) => (
+							<Link
+								key={`${element[key] + index}`}
+								to={`/book/${element[key]}`}
+								className={classes.BookNr}
+							>
 								{nrBook}
 							</Link>
 						));
