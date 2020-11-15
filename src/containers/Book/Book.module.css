@@ -6,7 +6,7 @@
 }
 .Container {
 	border-radius: 0.5rem;
-	width: 70%;
+	width: 400px;
 	padding: 15px;
 	margin: 15px;
 	display: flex;
@@ -59,49 +59,9 @@
 .Container h3 {
 	letter-spacing: 1px;
 }
-.Container .Image {
-	grid-area: 1 / 1 / 3 / 2;
-}
 
 .Container .Title {
 	display: inline-block;
-}
-
-.Container .Description {
-	grid-area: 2 /2 /3 /3;
-	width: 100%;
-	display: flex;
-	flex-flow: row;
-}
-
-.Container .Image {
-	place-self: center;
-}
-.Comics {
-	width: 90%;
-	height: 100%;
-	padding: 10px 30px;
-	text-align: left;
-}
-
-.Comics h3 {
-	margin: 0;
-	padding-top: 1em;
-	border-top: 0.1rem #c0c0c0 solid;
-}
-
-.Comics ul {
-	padding: 5px;
-	margin: 6px;
-}
-.Comics ul li:before {
-	content: "\00BB \0020";
-}
-.Comics li {
-	letter-spacing: 1px;
-	margin: 2px;
-	padding: 4px 2px;
-	list-style: none;
 }
 
 @media (max-width: 560px) {

@@ -6,19 +6,26 @@ const tableBody = (props) => (
 	<div className={classes.Body}>
 		{props.data.map((element, index) => (
 			<div key={index} className={classes.BodyRow}>
-				{Object.keys(element).map((key, index) => {
+				{Object.keys(element).map((key, i) => {
 					let cell = null;
 					if (key === "books") {
-						cell = element[key].map((nrBook, index) => (
+						cell = element[key].map((nrBook, i) => (
 							<Link
-								key={`${element[key] + index}`}
+								key={`${element[key] + i}`}
 								to={`/book/${element[key]}`}
 								className={classes.BookNr}
 							>
 								{nrBook}
 							</Link>
 						));
+					} else if (key === "name") {
+						cell = (
+							<Link className={classes.BookNr} to={`/book/${index + 1}`}>
+								{element[key]}
+							</Link>
+						);
 					} else cell = element[key];
+
 					return (
 						<div
 							key={element[key] + index.toString()}

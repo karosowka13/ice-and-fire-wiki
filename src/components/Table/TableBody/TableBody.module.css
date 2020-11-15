@@ -24,3 +24,18 @@
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+.BookNr {
+	text-decoration: none;
+	color: #9e2c37;
+	padding: 0 5px;
+	border-left: 2px solid black;
+}
+
+.BookNr:first-child {
+	border-left: 0;
+}
+
+.BookNr:hover {
+	color: #f4b00c;
+}

@@ -84,7 +84,10 @@ export function getBookData(results) {
 }
 
 export function getPage(str) {
-	return Number(
-		str.substring(str.lastIndexOf("page=") + 5, str.lastIndexOf("&"))
-	);
+	if (str === undefined) {
+		return 0;
+	} else
+		return Number(
+			str.substring(str.lastIndexOf("page=") + 5, str.lastIndexOf("&"))
+		);
 }

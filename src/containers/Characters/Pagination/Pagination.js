@@ -13,59 +13,55 @@ class Pagination extends Component {
 		let next = null;
 		let last = null;
 		let actualPage = 1;
-		for (const linkName in this.props.linksObject) {
-			if (linkName === "prev") {
-				actualPage = getPage(this.props.linksObject[linkName]) + 1;
-				prev = (
-					<Button
-						key="prev"
-						btnType="GoTo"
-						clicked={() =>
-							this.props.changePage(this.props.linksObject[linkName])
-						}
-					>
-						&lt;
-					</Button>
-				);
-			} else if (linkName === "next") {
-				actualPage = getPage(this.props.linksObject[linkName]) - 1;
-				next = (
-					<Button
-						key="next"
-						btnType="GoTo"
-						clicked={() =>
-							this.props.changePage(this.props.linksObject[linkName])
-						}
-					>
-						&gt;
-					</Button>
-				);
-			} else if (linkName === "last") {
-				last = (
-					<Button
-						key="last"
-						btnType="GoTo"
-						clicked={() =>
-							this.props.changePage(this.props.linksObject[linkName])
-						}
-					>
-						&gt;&gt;
-					</Button>
-				);
-			} else if (linkName === "first" && actualPage !== 1) {
-				first = (
-					<Button
-						key="first"
-						btnType="GoTo"
-						clicked={() =>
-							this.props.changePage(this.props.linksObject[linkName])
-						}
-					>
-						&lt;&lt;
-					</Button>
-				);
-			}
-		}
+
+		actualPage = this.props.linksObject.prev
+			? getPage(this.props.linksObject.prev) + 1
+			: getPage(this.props.linksObject.next) - 1;
+
+		prev = (
+			<Button
+				key="prev"
+				btnType="GoTo"
+				disabled={!this.props.linksObject.prev}
+				clicked={() => this.props.changePage(this.props.linksObject.prev)}
+			>
+				&lt;
+			</Button>
+		);
+
+		next = (
+			<Button
+				key="next"
+				btnType="GoTo"
+				disabled={!this.props.linksObject.next}
+				clicked={() => this.props.changePage(this.props.linksObject.next)}
+			>
+				&gt;
+			</Button>
+		);
+
+		last = (
+			<Button
+				key="last"
+				btnType="GoTo"
+				disabled={!this.props.linksObject.next}
+				clicked={() => this.props.changePage(this.props.linksObject.last)}
+			>
+				&gt;&gt;
+			</Button>
+		);
+
+		first = (
+			<Button
+				key="first"
+				btnType="GoTo"
+				disabled={actualPage === 1}
+				clicked={() => this.props.changePage(this.props.linksObject.first)}
+			>
+				&lt;&lt;
+			</Button>
+		);
+
 		return (
 			<div className={classes.Pagination}>
 				{first} {prev} {actualPage}
