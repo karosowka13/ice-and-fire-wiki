@@ -12,7 +12,7 @@ const tableBody = (props) => (
 						cell = element[key].map((nrBook, i) => (
 							<Link
 								key={`${element[key] + i}`}
-								to={`/book/${element[key]}`}
+								to={`/book/${nrBook}`}
 								className={classes.BookNr}
 							>
 								{nrBook}
@@ -20,7 +20,7 @@ const tableBody = (props) => (
 						));
 					} else if (key === "name") {
 						cell = (
-							<Link className={classes.BookNr} to={`/book/${index + 1}`}>
+							<Link className={classes.BookTitle} to={`/book/${index + 1}`}>
 								{element[key]}
 							</Link>
 						);
@@ -28,7 +28,7 @@ const tableBody = (props) => (
 
 					return (
 						<div
-							key={element[key] + index.toString()}
+							key={element[key] + index.toString() + key}
 							className={classes.BodyRowItem}
 						>
 							{cell}

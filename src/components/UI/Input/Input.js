@@ -41,7 +41,7 @@ const input = (props) => {
 				>
 					{props.elementConfig.options.map((option) => {
 						let value = option;
-						if (option === "" || option === "All genders") {
+						if (option === "" || option === "All") {
 							value = "";
 						}
 						return (

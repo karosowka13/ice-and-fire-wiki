@@ -35,11 +35,13 @@
 	color: white;
 	background-color: #f4b00c;
 	border: 2px solid #f4b00c;
+	border-bottom: 1px solid #ccc;
 }
 .GoTo:hover {
 	border: 2px solid #9e2c37;
 	background-color: #9e2c37;
 	color: white;
+	border-bottom: 1px solid #ccc;
 }
 
 .Danger {

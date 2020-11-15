@@ -1,29 +1,25 @@
 .Head {
-	display: flex;
-	flex: 0 0 auto;
 	height: 46px;
 	color: white;
 	border-bottom: 1px solid #ccc;
 	background-color: #fec200;
+	border-radius: 0.5rem;
 	padding: 0 10px;
 	font-size: 12px;
 }
 
 .HeadRow {
+	font-weight: 700;
 	display: flex;
-	flex-direction: row;
-	flex: 1 1 auto;
+	flex-flow: row nowrap;
 	text-transform: uppercase;
-	align-items: center;
 }
+
 .HeadRowItem {
-	box-sizing: border-box;
 	display: flex;
-	height: 46px;
-	flex: 1 0 200px;
-	align-items: center;
-	justify-content: flex-start;
-	padding: 10px 10px;
-	font-size: 14px;
-	text-overflow: ellipsis;
+	flex-flow: row wrap;
+	flex: 1 0 25%;
+	padding: 0.5em;
+	overflow: hidden;
+	min-width: 0px;
 }

@@ -7,7 +7,7 @@ import PropTypes, { array } from "prop-types";
 import Input from "../../../components/UI/Input/Input";
 class Filter extends Component {
 	render() {
-		const genderList = ["All genders", "Female", "Male"];
+		const genderList = ["All", "Female", "Male"];
 		const pageSize = ["", 5, 10, 15, 20, 25];
 		return (
 			<div className={classes.Filter}>
