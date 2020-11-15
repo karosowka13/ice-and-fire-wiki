@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import wikiLogo from "../../assets/logo-iceandfire.png";
+import wikiLogo from "../../assets/logo-iceandfire.jpg";
 import classes from "./Logo.module.css";
 
 const logo = (props) => (

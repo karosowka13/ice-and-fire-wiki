@@ -1,9 +1,8 @@
 .Table {
 	display: flex;
-	flex-flow: column nowrap;
+	flex-direction: column;
+	position: relative;
+	overflow-x: hidden;
 	font-size: 0.9rem;
 	margin: 0.5rem;
-	line-height: 1.5;
-	flex: 1 1 auto;
-	height: 60vh;
 }
