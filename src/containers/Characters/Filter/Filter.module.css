@@ -12,9 +12,6 @@
 	display: flex;
 	flex-flow: row;
 }
-.FilterSelect:last-child {
-	width: 25%;
-}
 
 @media (max-width: 500px) {
 	.Filter {
@@ -24,6 +21,6 @@
 }
 @media (max-width: 380px) {
 	.FilterSelect {
-		flex-flow: column;
+		flex-flow: row;
 	}
 }

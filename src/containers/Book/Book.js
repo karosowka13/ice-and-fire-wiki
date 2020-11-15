@@ -35,7 +35,6 @@ class Book extends Component {
 		let isReadyBook = null;
 		let spinner = null;
 		if (this.props.successFetchBooks) {
-			this.setState({ loading: true });
 			this.props.bookList.forEach((book, index) => {
 				if (index + 1 === match.params.id) {
 					this.setState({ book: book, loading: false });

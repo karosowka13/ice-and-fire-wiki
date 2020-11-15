@@ -14,23 +14,28 @@ import Pagination from "./Pagination/Pagination";
 
 class Characters extends Component {
 	componentDidMount() {
-		this.props.fetchCharacters();
+		this.props.fetchCharacters(
+			this.props.inputed,
+			this.props.selected,
+			this.props.pageSize
+		);
 	}
+	state = {
+		charactersHeaders: [
+			"Name and Aliases",
+			"Gender",
+			"Culture",
+			"Books' IDs",
+			"Serial seasons",
+		],
+	};
 	render() {
 		let charactersTable = null;
 		if (this.props.loading) {
 			charactersTable = <Spinner />;
 		} else if (this.props.charactersList) {
-			const charactersHeaders = [
-				"Name and Aliases",
-				"Gender",
-				"Culture",
-				"Books' IDs",
-				"Serial seasons",
-			];
 			charactersTable = (
 				<React.Fragment>
-					<TableHeader tableHeaders={charactersHeaders} />
 					<TableBody data={this.props.charactersList} />
 				</React.Fragment>
 			);
@@ -44,7 +49,11 @@ class Characters extends Component {
 		return (
 			<React.Fragment>
 				<Filter />
-				<div className={classes.Table}>{charactersTable}</div>
+				<div className={classes.Table}>
+					{" "}
+					<TableHeader tableHeaders={this.state.charactersHeaders} />
+					{charactersTable}
+				</div>
 				<Pagination />
 			</React.Fragment>
 		);
@@ -56,12 +65,16 @@ const mapStateToProps = (state) => {
 		charactersList: state.characters.characters,
 		loading: state.characters.loading,
 		error: state.characters.error,
+		inputed: state.characters.inputed,
+		selected: state.characters.selected,
+		pageSize: state.characters.pageSize,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchCharacters: () => dispatch(actions.fetchCharacters()),
+		fetchCharacters: (inputed, selected, pageSize) =>
+			dispatch(actions.fetchCharacters(inputed, selected, pageSize)),
 	};
 };
 

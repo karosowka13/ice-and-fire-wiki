@@ -41,7 +41,7 @@ class Filter extends Component {
 						elementConfig={{ options: genderList }}
 					></Input>
 					<Input
-						label="Display results"
+						label="Display"
 						elementType="select"
 						changed={(event) =>
 							this.props.selectPageSizeHandler(

@@ -1,28 +1,26 @@
 .Body {
 	display: flex;
 	flex-direction: column;
-	flex: 1 1 auto;
-	overflow-x: auto;
+	flex: 0 0 auto;
 	padding: 0 5px;
 }
 .BodyRow {
 	display: flex;
-	flex: 0 0 auto;
+	flex-direction: row;
+	flex: 1 1 auto;
 	padding: 0 5px;
 	border-bottom: 1px solid #eee;
 }
 .BodyRowItem {
 	box-sizing: border-box;
 	display: flex;
-	height: 46px;
-	width: 200px;
+	height: auto;
+	flex: 1 0 200px;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0 10px;
+	padding: 10px 10px;
 	font-size: 14px;
 	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
 }
 
 .BookNr {

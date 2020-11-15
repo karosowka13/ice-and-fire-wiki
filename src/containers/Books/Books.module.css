@@ -2,6 +2,6 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	overflow: none;
+	overflow: auto;
 	width: 100vw;
 }
