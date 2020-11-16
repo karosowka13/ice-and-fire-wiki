@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import classes from "./Toolbar.module.css";
 import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
@@ -10,7 +10,11 @@ const toolbar = (props) => (
 		<DrawerToggle clicked={props.drawerToggleClicked} />
 		<div className={classes.Logo}>
 			<Logo />
+			<Link to="/">
+				<h2>Ice and fire</h2>
+			</Link>
 		</div>
+
 		<nav className={classes.DesktopOnly}>
 			<NavigationItems isAuthenticated={props.isAuth} />
 		</nav>

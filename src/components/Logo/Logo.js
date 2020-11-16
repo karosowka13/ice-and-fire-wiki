@@ -6,7 +6,7 @@ import classes from "./Logo.module.css";
 const logo = (props) => (
 	<div className={classes.Logo} style={{ height: props.height }}>
 		<Link to="/">
-			<img src={wikiLogo} alt="wiki_logo" />
+			<img src={wikiLogo} alt="wiki_logo" /> {props.children}
 		</Link>
 	</div>
 );

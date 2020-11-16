@@ -9,10 +9,11 @@ import classes from "./Books.module.css";
 const Books = () => {
 	const booksHeaders = ["Name", "ISBN", "Number of pages", "Release date"];
 	const dispatch = useDispatch();
-	const { booksList, loading } = useSelector(
+	const { booksList, loading, error } = useSelector(
 		(state) => ({
 			booksList: state.books.books,
 			loading: state.books.loading,
+			error: state.books.error,
 		}),
 		shallowEqual
 	);
@@ -24,7 +25,14 @@ const Books = () => {
 	}, [dispatch]);
 
 	let booksTable = null;
-	if (loading) {
+	if (error) {
+		booksTable = (
+			<h2>
+				If you think this has a happy ending, you haven’t been paying attention.
+				Some error occurs, try again later.
+			</h2>
+		);
+	} else if (loading) {
 		booksTable = <Spinner />;
 	} else if (booksList) {
 		booksTable = (
@@ -33,13 +41,7 @@ const Books = () => {
 				<TableBody data={booksList} />
 			</React.Fragment>
 		);
-	} else
-		booksTable = (
-			<h2>
-				If you think this has a happy ending, you haven’t been paying attention.
-				Some error occurs, try again later.
-			</h2>
-		);
+	}
 	return (
 		<React.Fragment>
 			<div className={classes.Table}>{booksTable}</div>

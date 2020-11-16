@@ -51,9 +51,8 @@
 .BookTitle:hover {
 	color: #f4b00c;
 }
-
-@media (max-width: 500px) {
-	.BodyRow {
-		margin-right: 50px;
+@media (max-height: 600px) {
+	.Body {
+		height: 50vh;
 	}
 }

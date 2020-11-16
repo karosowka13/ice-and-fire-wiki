@@ -17,11 +17,12 @@ const fetchBooksSuccess = (state, action) => {
 		books: action.books,
 		loading: false,
 		success: true,
+		error: false,
 	});
 };
 
 const fetchBooksFail = (state, action) => {
-	return updateObject(state, { loading: false, error: true });
+	return updateObject(state, { error: true });
 };
 
 const reducer = (state = initialState, action) => {

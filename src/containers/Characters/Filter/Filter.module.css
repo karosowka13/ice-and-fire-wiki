@@ -25,3 +25,10 @@
 		flex-flow: row;
 	}
 }
+
+@media (max-height: 600px) {
+	.Filter {
+		margin: 0 0.5rem;
+		padding: 0 0.5rem;
+	}
+}

@@ -13,6 +13,13 @@
 	border-bottom: 1px solid #ccc;
 	z-index: 90;
 }
+.Toolbar h2 {
+	font-size: 1.7em;
+	position: absolute;
+	left: 70px;
+	top: -20%;
+	color: black;
+}
 
 .Toolbar nav {
 	height: 100%;
@@ -25,5 +32,8 @@
 @media (max-width: 499px) {
 	.DesktopOnly {
 		display: none;
+	}
+	.Toolbar h2 {
+		left: 25%;
 	}
 }

@@ -1,9 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import ErrorBoundary from "./hoc/ErrorBoundary/ErrorBoundary";
 import Layout from "./hoc/Layout/Layout";
 import Characters from "./containers/Characters/Characters";
+import Spinner from "./components/UI/Spinner/Spinner";
 
 const Books = React.lazy(() => {
 	return import("./containers/Books/Books");
@@ -17,16 +18,30 @@ const App = () => (
 	<div className="App">
 		<Layout>
 			<Switch>
-				<Suspense fallback={<h2>Loading...</h2>}>
-					<ErrorBoundary FallbackComponent>
-						<Route path="/book/:id" exact component={Book} />
-					</ErrorBoundary>
-					<ErrorBoundary FallbackComponent>
-						<Route path="/books" render={(props) => <Books {...props} />} />
-					</ErrorBoundary>
-					<Route path="/" exact component={Characters} />
-					<Redirect to="/" />
-				</Suspense>
+				<React.Suspense fallback={<Spinner />}>
+					<Route
+						path="/books"
+						render={(props) => (
+							<React.Fragment>
+								<ErrorBoundary FallbackComponent>
+									<Books {...props} />
+								</ErrorBoundary>
+							</React.Fragment>
+						)}
+					/>{" "}
+					<Route
+						exact
+						path="/book/:id"
+						render={(props) => (
+							<React.Fragment>
+								<ErrorBoundary FallbackComponent>
+									<Book {...props} />
+								</ErrorBoundary>
+							</React.Fragment>
+						)}
+					/>
+					<Route exact path="/" component={Characters} />
+				</React.Suspense>
 			</Switch>
 		</Layout>
 	</div>
