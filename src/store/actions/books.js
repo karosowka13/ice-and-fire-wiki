@@ -9,10 +9,9 @@ export const fetchBooksSuccess = (books) => {
 	};
 };
 
-export const fetchBooksFail = (error) => {
+export const fetchBooksFail = () => {
 	return {
 		type: actionTypes.FETCH_BOOKS_FAIL,
-		error: true,
 	};
 };
 
@@ -32,7 +31,7 @@ export const fetchBooks = () => {
 				dispatch(fetchBooksSuccess(booksList));
 			})
 			.catch((err) => {
-				dispatch(fetchBooksFail(err));
+				dispatch(fetchBooksFail());
 			});
 	};
 };

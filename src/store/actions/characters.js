@@ -9,10 +9,9 @@ export const fetchCharactersSuccess = (characters) => {
 	};
 };
 
-export const fetchCharactersFail = (error) => {
+export const fetchCharactersFail = () => {
 	return {
 		type: actionTypes.FETCH_CHARACTERS_FAIL,
-		error: true,
 	};
 };
 
@@ -33,8 +32,8 @@ export const fetchCharacters = (inputed, selected, pageSize) => {
 				dispatch(fetchCharactersSuccess(charactersList));
 				dispatch(setPagination(res.headers.link));
 			})
-			.catch((err) => {
-				dispatch(fetchCharactersFail(err));
+			.catch(() => {
+				dispatch(fetchCharactersFail());
 			});
 	};
 };
@@ -94,7 +93,7 @@ export const changePage = (link) => {
 				dispatch(setPagination(res.headers.link));
 			})
 			.catch((err) => {
-				dispatch(fetchCharactersFail(err));
+				dispatch(fetchCharactersFail());
 			});
 	};
 };

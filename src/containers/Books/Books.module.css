@@ -6,3 +6,9 @@
 	font-size: 0.9rem;
 	margin: 0.5rem;
 }
+@media (max-width: 500px) {
+	.Table {
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+}

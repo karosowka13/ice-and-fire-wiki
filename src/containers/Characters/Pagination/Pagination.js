@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import * as actions from "../../../store/actions/index";
@@ -14,10 +14,7 @@ const Pagination = () => {
 	let last = null;
 
 	const dispatch = useDispatch();
-	const linksObject = useSelector(
-		(state) => state.characters.links,
-		shallowEqual
-	);
+	const linksObject = useSelector((state) => state.characters.links);
 
 	useEffect(() => {
 		setActualPage(

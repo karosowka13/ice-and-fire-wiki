@@ -5,7 +5,7 @@
 	background-color: #fec200;
 	border-radius: 0.5rem;
 	padding: 0 10px;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .HeadRow {
@@ -13,9 +13,11 @@
 	display: flex;
 	flex-flow: row nowrap;
 	text-transform: uppercase;
+	margin-right: 30px;
 }
 
 .HeadRowItem {
+	font-family: "Montserrat", sans-serif;
 	display: flex;
 	flex-flow: row wrap;
 	flex: 1 0 25%;

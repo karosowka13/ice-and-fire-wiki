@@ -4,7 +4,7 @@ import { updateObject } from "../../shared/utility";
 const initialState = {
 	books: [],
 	loading: false,
-	error: null,
+	error: false,
 	success: false,
 };
 
@@ -21,7 +21,7 @@ const fetchBooksSuccess = (state, action) => {
 };
 
 const fetchBooksFail = (state, action) => {
-	return updateObject(state, { loading: false, error: action.error });
+	return updateObject(state, { loading: false, error: true });
 };
 
 const reducer = (state = initialState, action) => {

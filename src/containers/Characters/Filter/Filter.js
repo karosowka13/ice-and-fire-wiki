@@ -23,10 +23,8 @@ const Filter = () => {
 			<div className={classes.FilterSearch}>
 				<Input
 					elementType="input"
-					changed={async (event) =>
-						await dispatch(
-							actions.inputSearchHandler(event, selected, pageSize)
-						)
+					changed={(event) =>
+						dispatch(actions.inputSearchHandler(event, selected, pageSize))
 					}
 					placeholder="Find character by name"
 					value={inputed}
@@ -37,10 +35,8 @@ const Filter = () => {
 				<Input
 					label="Gender"
 					elementType="select"
-					changed={async (event) =>
-						await dispatch(
-							actions.selectSearchHandler(event, inputed, pageSize)
-						)
+					changed={(event) =>
+						dispatch(actions.selectSearchHandler(event, inputed, pageSize))
 					}
 					value={selected}
 					elementConfig={{ options: genderList }}
@@ -48,8 +44,8 @@ const Filter = () => {
 				<Input
 					label="Display"
 					elementType="select"
-					changed={async (event) =>
-						await dispatch(actions.selectPageSize(event, inputed, selected))
+					changed={(event) =>
+						dispatch(actions.selectPageSize(event, inputed, selected))
 					}
 					elementConfig={{ options: pageSizeOptions }}
 				></Input>

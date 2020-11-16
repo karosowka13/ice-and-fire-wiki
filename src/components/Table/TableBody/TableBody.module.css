@@ -8,12 +8,15 @@
 	height: 60vh;
 }
 .BodyRow {
-	width: 100%;
 	display: flex;
 	flex-flow: row nowrap;
 	border-bottom: 1px solid #d0d0d0;
+	margin-right: 30px;
 }
+
 .BodyRowItem {
+	font-family: "Montserrat", sans-serif;
+
 	display: flex;
 	flex-flow: row wrap;
 	flex: 1 0 25%;
@@ -47,4 +50,10 @@
 .BookNr:hover,
 .BookTitle:hover {
 	color: #f4b00c;
+}
+
+@media (max-width: 500px) {
+	.BodyRow {
+		margin-right: 50px;
+	}
 }

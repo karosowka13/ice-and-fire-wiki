@@ -12,6 +12,7 @@
 	box-sizing: border-box;
 	display: block;
 	font-weight: bold;
+	font-family: "Cinzel", serif;
 }
 .NavigationItem {
 	letter-spacing: 1px;

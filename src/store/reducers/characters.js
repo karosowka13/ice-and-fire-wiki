@@ -4,7 +4,7 @@ import { updateObject } from "../../shared/utility";
 const initialState = {
 	characters: [],
 	loading: false,
-	error: null,
+	error: false,
 	success: false,
 	inputed: "",
 	selected: "",
@@ -20,12 +20,13 @@ const fetchCharactersSuccess = (state, action) => {
 	return updateObject(state, {
 		characters: action.characters,
 		loading: false,
+		error: false,
 		success: true,
 	});
 };
 
 const fetchCharactersFail = (state, action) => {
-	return updateObject(state, { loading: false, error: action.error });
+	return updateObject(state, { error: true });
 };
 
 const selectCharacter = (state, action) => {
