@@ -12,7 +12,7 @@ ENV NODE_ENV production
 
 RUN npm install
 
-RUN npm run build
+RUN npm run build -- --profile
 
 FROM nginx:1.19.0-alpine
 

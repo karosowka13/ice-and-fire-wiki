@@ -40,7 +40,10 @@ const Book = () => {
 				setBook(formatedBook[0]);
 				setLoading(false);
 			})
-			.catch((err) => setError(true));
+			.catch((err) => {
+				setError(true);
+				setLoading(false);
+			});
 	};
 
 	let isReadyBook = null;
@@ -64,7 +67,12 @@ const Book = () => {
 	} else if (loading) {
 		spinner = <Spinner />;
 	} else if (error) {
-		isReadyBook = <h2>We are forcing some problems, please try again.</h2>;
+		isReadyBook = (
+			<h2>
+				We are forcing some problems, please try again. <br></br>Hint: check if
+				the book id is correct.
+			</h2>
+		);
 	} else isReadyBook = <Redirect to="/" />;
 
 	return (
