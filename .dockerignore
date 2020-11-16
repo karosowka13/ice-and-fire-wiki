@@ -1,0 +1,13 @@
+**/node_modules
+**/npm-debug.log
+**/build
+**/dist
+**/nodemon.json
+**/build/
+*/.git/
+.dockerignore
+**/*.gitignore
+README.md
+.vscode
+**/images
+.env

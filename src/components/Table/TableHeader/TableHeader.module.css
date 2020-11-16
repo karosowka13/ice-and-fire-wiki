@@ -17,11 +17,16 @@
 }
 
 .HeadRowItem {
+	text-align: center;
 	font-family: "Montserrat", sans-serif;
 	display: flex;
 	flex-flow: row wrap;
-	flex: 1 0 25%;
-	padding: 0.5em;
+	flex: 1 0 20%;
+	padding: 7px;
 	overflow: hidden;
 	min-width: 0px;
+}
+
+.Head .HeadRow .HeadRowItem {
+	flex-grow: 1 !important;
 }

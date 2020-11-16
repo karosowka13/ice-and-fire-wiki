@@ -10,10 +10,9 @@ export function parseLinkHeader(header) {
 		throw new Error("input must not be of zero length");
 	}
 
-	// Split parts by comma
 	const parts = header.split(",");
 	let links = {};
-	// Parse each part
+
 	for (let i = 0; i < parts.length; i++) {
 		let section = parts[i].split(";");
 		if (section.length !== 2) {

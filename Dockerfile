@@ -9,6 +9,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 ENV NODE_ENV production
+ENV GENERATE_SOURCEMAP=false
 
 RUN npm install
 

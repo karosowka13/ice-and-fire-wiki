@@ -55,7 +55,7 @@ export const selectSearchHandler = (event, inputed, pageSize) => {
 };
 
 export const inputChangeHandler = (inputed) => {
-	const value = inputed;
+	const value = inputed.toLowerCase();
 	return { type: actionTypes.SEARCH_CHARACTER, inputedValue: value };
 };
 

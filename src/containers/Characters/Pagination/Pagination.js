@@ -6,25 +6,25 @@ import * as actions from "../../../store/actions/index";
 import { getPage } from "../../../shared/utility";
 import classes from "./Pagination.module.css";
 import Button from "../../../components/UI/Button/Button";
+
 const Pagination = () => {
 	const [actualPage, setActualPage] = useState(1);
-	let first = null;
-	let prev = null;
-	let next = null;
-	let last = null;
 
 	const dispatch = useDispatch();
 	const linksObject = useSelector((state) => state.characters.links);
 
 	useEffect(() => {
-		setActualPage(
-			linksObject.prev
-				? getPage(linksObject.prev) + 1
-				: getPage(linksObject.next) - 1
-		);
-	}, [linksObject.prev, linksObject.next]);
+		if (linksObject.first === linksObject.last) {
+			setActualPage(1);
+		} else
+			setActualPage(
+				linksObject.prev
+					? getPage(linksObject.prev) + 1
+					: getPage(linksObject.next) - 1
+			);
+	}, [linksObject]);
 
-	prev = (
+	const prev = (
 		<Button
 			key="prev"
 			btnType="GoTo"
@@ -35,7 +35,7 @@ const Pagination = () => {
 		</Button>
 	);
 
-	next = (
+	const next = (
 		<Button
 			key="next"
 			btnType="GoTo"
@@ -46,7 +46,7 @@ const Pagination = () => {
 		</Button>
 	);
 
-	last = (
+	const last = (
 		<Button
 			key="last"
 			btnType="GoTo"
@@ -57,7 +57,7 @@ const Pagination = () => {
 		</Button>
 	);
 
-	first = (
+	const first = (
 		<Button
 			key="first"
 			btnType="GoTo"
