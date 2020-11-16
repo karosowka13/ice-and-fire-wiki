@@ -1,92 +1,82 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
+
 import * as actions from "../../../store/actions/index";
 import { getPage } from "../../../shared/utility";
 import classes from "./Pagination.module.css";
 import Button from "../../../components/UI/Button/Button";
-class Pagination extends Component {
-	render() {
-		let first = null;
-		let prev = null;
-		let next = null;
-		let last = null;
-		let actualPage = 1;
+const Pagination = () => {
+	const [actualPage, setActualPage] = useState(1);
+	let first = null;
+	let prev = null;
+	let next = null;
+	let last = null;
 
-		actualPage = this.props.linksObject.prev
-			? getPage(this.props.linksObject.prev) + 1
-			: getPage(this.props.linksObject.next) - 1;
+	const dispatch = useDispatch();
+	const linksObject = useSelector(
+		(state) => state.characters.links,
+		shallowEqual
+	);
 
-		prev = (
-			<Button
-				key="prev"
-				btnType="GoTo"
-				disabled={!this.props.linksObject.prev}
-				clicked={() => this.props.changePage(this.props.linksObject.prev)}
-			>
-				&lt;
-			</Button>
+	useEffect(() => {
+		setActualPage(
+			linksObject.prev
+				? getPage(linksObject.prev) + 1
+				: getPage(linksObject.next) - 1
 		);
+	}, [linksObject.prev, linksObject.next]);
 
-		next = (
-			<Button
-				key="next"
-				btnType="GoTo"
-				disabled={!this.props.linksObject.next}
-				clicked={() => this.props.changePage(this.props.linksObject.next)}
-			>
-				&gt;
-			</Button>
-		);
+	prev = (
+		<Button
+			key="prev"
+			btnType="GoTo"
+			disabled={!linksObject.prev}
+			clicked={() => dispatch(actions.changePage(linksObject.prev))}
+		>
+			&lt;
+		</Button>
+	);
 
-		last = (
-			<Button
-				key="last"
-				btnType="GoTo"
-				disabled={!this.props.linksObject.next}
-				clicked={() => this.props.changePage(this.props.linksObject.last)}
-			>
-				&gt;&gt;
-			</Button>
-		);
+	next = (
+		<Button
+			key="next"
+			btnType="GoTo"
+			disabled={!linksObject.next}
+			clicked={() => dispatch(actions.changePage(linksObject.next))}
+		>
+			&gt;
+		</Button>
+	);
 
-		first = (
-			<Button
-				key="first"
-				btnType="GoTo"
-				disabled={actualPage === 1}
-				clicked={() => this.props.changePage(this.props.linksObject.first)}
-			>
-				&lt;&lt;
-			</Button>
-		);
+	last = (
+		<Button
+			key="last"
+			btnType="GoTo"
+			disabled={!linksObject.next}
+			clicked={() => dispatch(actions.changePage(linksObject.last))}
+		>
+			&gt;&gt;
+		</Button>
+	);
 
-		return (
-			<div className={classes.Pagination}>
-				{first} {prev} {actualPage}
-				{next} {last}
-			</div>
-		);
-	}
-}
+	first = (
+		<Button
+			key="first"
+			btnType="GoTo"
+			disabled={actualPage === 1}
+			clicked={() => dispatch(actions.changePage(linksObject.first))}
+		>
+			&lt;&lt;
+		</Button>
+	);
 
-const mapStateToProps = (state) => {
-	return {
-		linksObject: state.characters.links,
-	};
+	return (
+		<div className={classes.Pagination}>
+			{first} {prev} {actualPage}
+			{next} {last}
+		</div>
+	);
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		changePage: (link) => dispatch(actions.changePage(link)),
-	};
-};
-
-export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(Pagination)
-);
-
-Pagination.propTypes = {
-	changePage: PropTypes.func,
-};
+export default withRouter(Pagination);

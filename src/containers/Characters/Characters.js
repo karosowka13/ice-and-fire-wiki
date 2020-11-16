@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import * as actions from "../../store/actions/index";
 
@@ -12,79 +11,68 @@ import Filter from "./Filter/Filter";
 import classes from "./Characters.module.css";
 import Pagination from "./Pagination/Pagination";
 
-class Characters extends Component {
-	componentDidMount() {
-		this.props.fetchCharacters(
-			this.props.inputed,
-			this.props.selected,
-			this.props.pageSize
-		);
-	}
-	state = {
-		charactersHeaders: [
-			"Name and Aliases",
-			"Gender",
-			"Culture",
-			"Books' IDs",
-			"Serial seasons",
-		],
-	};
-	render() {
-		let charactersTable = null;
-		if (this.props.loading) {
-			charactersTable = <Spinner />;
-		} else if (this.props.charactersList) {
-			charactersTable = (
-				<React.Fragment>
-					<TableBody data={this.props.charactersList} />
-				</React.Fragment>
-			);
-		} else
-			charactersTable = (
-				<h2>
-					If you think this has a happy ending, you haven’t been paying
-					attention. Some error occurs, try again later.
-				</h2>
-			);
-		return (
+const Characters = () => {
+	const [charactersHeaders] = useState([
+		"Name and Aliases",
+		"Gender",
+		"Culture",
+		"Books' IDs",
+		"Serial seasons",
+	]);
+	const dispatch = useDispatch();
+	const {
+		charactersList,
+		loading,
+		error,
+		inputed,
+		selected,
+		pageSize,
+	} = useSelector(
+		(state) => ({
+			charactersList: state.characters.characters,
+			loading: state.characters.loading,
+			error: state.characters.error,
+			inputed: state.characters.inputed,
+			selected: state.characters.selected,
+			pageSize: state.characters.pageSize,
+		}),
+		shallowEqual
+	);
+
+	useEffect(() => {
+		const loadCharacters = async () => {
+			await dispatch(actions.fetchCharacters(inputed, selected, pageSize));
+		};
+		loadCharacters();
+	}, [inputed, selected, pageSize, dispatch]);
+
+	let charactersTable = null;
+	if (loading) {
+		charactersTable = <Spinner />;
+	} else if (charactersList) {
+		charactersTable = (
 			<React.Fragment>
-				<Filter />
-				<div className={classes.Table}>
-					{" "}
-					<TableHeader tableHeaders={this.state.charactersHeaders} />
-					{charactersTable}
-				</div>
-				<Pagination />
+				<TableBody data={charactersList} />
 			</React.Fragment>
 		);
+	} else {
+		charactersTable = (
+			<h2>
+				If you think this has a happy ending, you haven’t been paying attention.
+				Some error occurs, try again later.
+			</h2>
+		);
 	}
-}
-
-const mapStateToProps = (state) => {
-	return {
-		charactersList: state.characters.characters,
-		loading: state.characters.loading,
-		error: state.characters.error,
-		inputed: state.characters.inputed,
-		selected: state.characters.selected,
-		pageSize: state.characters.pageSize,
-	};
+	return (
+		<div className={classes.Container}>
+			<Filter />
+			<div className={classes.Table}>
+				<TableHeader tableHeaders={charactersHeaders} />
+				{charactersTable}
+			</div>
+			<Pagination />
+		</div>
+	);
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		fetchCharacters: (inputed, selected, pageSize) =>
-			dispatch(actions.fetchCharacters(inputed, selected, pageSize)),
-	};
-};
-
-export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(Characters)
-);
-
-Characters.propTypes = {
-	fetchCharacters: PropTypes.func,
-	charactersList: PropTypes.array,
-	loading: PropTypes.bool,
-	error: PropTypes.bool,
-};
+export default withRouter(Characters);
