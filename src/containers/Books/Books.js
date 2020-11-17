@@ -7,7 +7,7 @@ import TableBody from "../../components/Table/TableBody/TableBody";
 import classes from "./Books.module.css";
 
 const Books = () => {
-	const booksHeaders = ["Name", "ISBN", "Number of pages", "Release date"];
+	const booksHeaders = ["Name", "ISBN", "Pages", "Release date"];
 	const dispatch = useDispatch();
 	const { booksList, loading, error } = useSelector(
 		(state) => ({

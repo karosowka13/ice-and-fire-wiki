@@ -1,5 +1,4 @@
 .Head {
-	height: 46px;
 	color: white;
 	border-bottom: 1px solid #ccc;
 	background-color: #fec200;
@@ -21,12 +20,29 @@
 	font-family: "Montserrat", sans-serif;
 	display: flex;
 	flex-flow: row wrap;
-	flex: 1 0 20%;
-	padding: 7px;
+	flex: 1 0 19%;
+	padding: 15px 0;
 	overflow: hidden;
 	min-width: 0px;
 }
 
 .Head .HeadRow .HeadRowItem {
 	flex-grow: 1 !important;
+}
+
+@media (max-width: 540px) {
+	.Head {
+		height: 100%;
+	}
+	.HeadRow {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin: 0.5em 0;
+		border-bottom: 1px solid rgba(3, 3, 3, 0.2);
+	}
+	.HeadRowItem {
+		flex: 1 1 170px;
+		border-bottom: 0.5px solid rgba(3, 3, 3, 0.2);
+	}
 }

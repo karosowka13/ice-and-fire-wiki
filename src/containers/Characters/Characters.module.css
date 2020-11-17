@@ -3,10 +3,16 @@
 	flex-direction: column;
 	position: relative;
 	overflow-x: hidden;
+	overflow: hidden;
 	font-size: 0.9rem;
 	margin: 0.5rem;
 	height: 67vh;
 }
 .Table h2 {
 	padding: 20px;
+}
+@media (max-width: 540px) {
+	.Table {
+		height: 100%;
+	}
 }

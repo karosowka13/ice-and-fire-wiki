@@ -18,7 +18,7 @@
 	font-family: "Montserrat", sans-serif;
 	display: flex;
 	flex-flow: row wrap;
-	flex: 1 0 20%;
+	flex: 1 0 19%;
 	padding: 7px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -53,5 +53,19 @@
 @media (max-height: 600px) {
 	.Body {
 		height: 50vh;
+	}
+}
+
+@media (max-width: 540px) {
+	.BodyRow {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin: 0.5em 0;
+		border: 1px solid rgba(3, 3, 3, 0.2);
+	}
+	.BodyRowItem {
+		flex: 1 1 170px;
+		border-bottom: 0.5px solid rgba(3, 3, 3, 0.2);
 	}
 }
