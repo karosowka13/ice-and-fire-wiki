@@ -22,11 +22,13 @@ Encyclopedia dedicated to the books of Ice and Fire by George R. R. Martin.
 
 The image is prepared to production build and it is run on ngnix server.
 
-To run the image: docker run -itp 8000:8000 karosowa/ice-and-fire-front:1.0.0
+To run the image:
+
+### `docker run -itp 8000:8000 karosowa/ice-and-fire-front:1.0.0`
 
 The app is running at [http://localhost:8000](http://localhost:8000).
 
-You need to have installed docker on your computer.
+You need to have installed docker on your computer first.
 
 ## How to start with npm
 
