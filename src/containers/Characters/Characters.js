@@ -13,6 +13,7 @@ import Pagination from "./Pagination/Pagination";
 
 const Characters = () => {
 	const dispatch = useDispatch();
+
 	const {
 		charactersList,
 		loading,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter } from "react-router-dom";
 
 import * as actions from "../../../store/actions/index";
 import { getPage } from "../../../shared/utility";
@@ -31,7 +30,7 @@ const Pagination = () => {
 			disabled={!linksObject.prev}
 			clicked={() => dispatch(actions.changePage(linksObject.prev))}
 		>
-			&lt;
+			Previous page
 		</Button>
 	);
 
@@ -42,7 +41,7 @@ const Pagination = () => {
 			disabled={!linksObject.next}
 			clicked={() => dispatch(actions.changePage(linksObject.next))}
 		>
-			&gt;
+			Next page
 		</Button>
 	);
 
@@ -53,7 +52,7 @@ const Pagination = () => {
 			disabled={!linksObject.next}
 			clicked={() => dispatch(actions.changePage(linksObject.last))}
 		>
-			&gt;&gt;
+			Last page
 		</Button>
 	);
 
@@ -64,7 +63,7 @@ const Pagination = () => {
 			disabled={actualPage === 1}
 			clicked={() => dispatch(actions.changePage(linksObject.first))}
 		>
-			&lt;&lt;
+			First page
 		</Button>
 	);
 
@@ -76,4 +75,4 @@ const Pagination = () => {
 	);
 };
 
-export default withRouter(Pagination);
+export default Pagination;

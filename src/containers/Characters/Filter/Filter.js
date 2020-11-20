@@ -7,7 +7,7 @@ import classes from "./Filter.module.css";
 import Input from "../../../components/UI/Input/Input";
 const Filter = () => {
 	const genderList = ["All", "Female", "Male"];
-	const pageSizeOptions = ["", 5, 10, 15, 20, 25];
+	const pageSizeOptions = [5, 10, 15, 20, 25];
 	const dispatch = useDispatch();
 	const { inputed, selected, pageSize } = useSelector(
 		(state) => ({
@@ -44,6 +44,7 @@ const Filter = () => {
 				<Input
 					label="Display"
 					elementType="select"
+					value={pageSize}
 					changed={(event) =>
 						dispatch(actions.selectPageSize(event, inputed, selected))
 					}

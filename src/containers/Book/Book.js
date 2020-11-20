@@ -29,9 +29,9 @@ const Book = () => {
 		});
 	};
 
-	const fetchBook = (id) => {
+	const fetchBook = async (id) => {
 		setLoading(true);
-		axios
+		await axios
 			.get(`https://www.anapioficeandfire.com/api/books/${id}`)
 			.then((res) => {
 				let fetchedBook = [];

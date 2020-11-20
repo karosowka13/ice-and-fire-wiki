@@ -8,7 +8,7 @@ const initialState = {
 	success: false,
 	inputed: "",
 	selected: "",
-	pageSize: "",
+	pageSize: 10,
 	links: { next: "", prev: "", first: "", last: "" },
 };
 

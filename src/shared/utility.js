@@ -26,34 +26,22 @@ export function parseLinkHeader(header) {
 }
 
 export function getCharactersData(results) {
-	let fetchedCharacters = [];
-	for (let i in results) {
-		let books = [];
-		for (let n = 0; n < results[i].books.length; n++) {
-			books.push(results[i].books[n].match(/\d+/g).map(Number));
-		}
-		const isGender = results[i].gender ? results[i].gender : "Unknown";
-		const isCulture = results[i].culture ? results[i].culture : "Unknown";
-
-		let aliasesChar = [];
-
-		if (results[i].name[0]) {
-			aliasesChar.push(results[i].name);
-		}
-		if (results[i].aliases[0]) {
-			aliasesChar.push(results[i].aliases);
-		}
-
+	let fetchedCharacters = results.map((i) => {
+		const books = i.books.map((book) => book.match(/\d+/g).map(Number));
+		const isGender = i.gender ? i.gender : "Unknown";
+		const isCulture = i.culture ? i.culture : "Unknown";
+		const aliases = i.aliases[0] ? i.aliases : [];
+		const names = i.name[0] ? i.name : [];
+		let aliasesChar = Array.prototype.concat(names, aliases);
 		const namesAndAliases = aliasesChar.join(", ");
-		fetchedCharacters.push({
+		return {
 			nameAndAliases: namesAndAliases,
 			gender: isGender,
 			culture: isCulture,
 			books: books,
-			numberOfSeasons: results[i].tvSeries.length,
-		});
-	}
-
+			numberOfSeasons: i.tvSeries.length,
+		};
+	});
 	return fetchedCharacters;
 }
 
@@ -68,16 +56,15 @@ function formatDate(date) {
 }
 
 export function getBookData(results) {
-	let fetchedBooks = [];
-	for (let i in results) {
-		const released = formatDate(results[i].released);
-		fetchedBooks.push({
-			name: results[i].name,
-			ISBN: results[i].isbn,
-			nrPages: results[i].numberOfPages,
+	const fetchedBooks = results.map((i) => {
+		let released = formatDate(i.released);
+		return {
+			name: i.name,
+			ISBN: i.isbn,
+			nrPages: i.numberOfPages,
 			releaseDate: released,
-		});
-	}
+		};
+	});
 
 	return fetchedBooks;
 }

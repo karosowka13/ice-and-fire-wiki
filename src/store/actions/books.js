@@ -22,9 +22,9 @@ export const fetchBooksStart = () => {
 };
 
 export const fetchBooks = () => {
-	return (dispatch) => {
+	return async (dispatch) => {
 		dispatch(fetchBooksStart());
-		axios
+		await axios
 			.get("https://www.anapioficeandfire.com/api/books?pageSize=25")
 			.then((res) => {
 				const booksList = getBookData(res.data);
